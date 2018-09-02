@@ -15,7 +15,9 @@ class ExtendUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('');
+            $table->string('username');
+            $table->string('country');
+            $table->string('gender');
         });
     }
 
@@ -28,6 +30,7 @@ class ExtendUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->dropColumn(['username', 'country', 'gender']);
         });
     }
 }
