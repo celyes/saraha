@@ -29,7 +29,12 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" required>
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required>
+                                @if ($errors->has('username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -73,7 +78,12 @@
                             <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control" name="country" required>
+                                <input id="country" type="text" class="form-control" name="country" value="{{ old('country') }}" required>
+                                @if ($errors->has('country'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('country') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         
@@ -81,15 +91,31 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <input id="gender" type="text" class="form-control" name="country" required>
+                                <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }} " required>
+                                @if ($errors->has('gender'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-2 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="checkbox" name="agree">
+                                 I have read and accept the <a href="/terms">Terms and Conditions</a>                       
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0 mt-2">
+                            <div class="col-md-6 offset-md-4">
+                            @if($errors->has('agree'))
+                                <p class="text-danger">{{ $errors->first('agree') }}</p>
+                            @endif
                             </div>
                         </div>
                     </form>
