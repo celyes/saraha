@@ -5,12 +5,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Write a message to {{$user[0]}} </div>
+            @if(session('sent'))
+                <p>{{ session('sent') }}</p>
+            @endif
+            <div class="card">  
+                <div class="card-header">Write a message to {{ $user->username }}</div>
 
                 <div class="card-body">
 
-                    <form action="/create" method="POST">
+                    <form action="/{{$user->id}}/create" method="POST">
                         {{ csrf_field()}}
                         <div class="form-group row">
                             <div class="col-md-12">
@@ -22,6 +25,13 @@
                                 <button type="submit" class="btn btn-primary">
                                     Send
                                 </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-md-12 text-right">
+                                <ul>  
+                                </ul>
                             </div>
                         </div>
                     </form>    

@@ -13,8 +13,14 @@ class messageController extends Controller
      * @return \Illuminate\Http\Response
      */  
     public function index(Request $request, $username){
-        $user = DB::table('users')->where('username', $username)->pluck('username');
-        return view('users.show', compact('user'));
+        $user = DB::table('users')
+        ->select('id', 'username')
+        ->where('username', $username)
+        ->first();
+        if(!$user){
+            return abort(404);
+        }
+        return view('users.show')->with(['user'=>$user]);
     }
 
     /**
@@ -22,14 +28,18 @@ class messageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $username)
-    {
-        //
-        $validatedMessage = $request->validate([
-            'body'=>'required|min:80|max:500'
+    public function create(Request $request, $user)
+    { 
+        $valid = $request->validate([
+            "body" => "required|min:15|max:500"
         ]);
+        DB::table('messages')->insert([
+            'body'      => $request->body,
+            'address'   => $request->getClientIp(),
+            'receiver'  => $user
+        ]);
+        return redirect()->back()->with('sent', 'Your message has been submitted successfully !'); 
     }
-
     /**
      * Store a newly created resource in storage.
      *
