@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'country' => 'required|regex:/^[a-zA-Z]+$/u|max:40',
             'gender' => 'required|max:6',
-            'agree' => 'required|in:1'
+            'agree' => 'required'
         ]);
     }
 
