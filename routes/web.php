@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +14,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -22,3 +24,4 @@ Route::get('/about', 'aboutController@about')->name('about');
 Route::get('/contact', 'aboutController@contact')->name('contact');
 Route::get('/{username}', 'messageController@index')->name('username');
 Route::post('/{user}/create', 'messageController@create');
+
