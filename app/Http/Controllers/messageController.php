@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Message;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 class messageController extends Controller
 {
     /**
@@ -36,7 +37,9 @@ class messageController extends Controller
         DB::table('messages')->insert([
             'body'      => $request->body,
             'address'   => $request->getClientIp(),
-            'receiver'  => $user
+            'receiver'  => $user,
+            'created_at'=> Carbon::now(),
+            'updated_at'=> Carbon::now()
         ]);
         return redirect()->back()->with('sent', 'Your message has been submitted successfully !'); 
     }
@@ -63,29 +66,6 @@ class messageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Message  $message
@@ -94,5 +74,6 @@ class messageController extends Controller
     public function destroy(Message $message)
     {
         //
+        
     }
 }

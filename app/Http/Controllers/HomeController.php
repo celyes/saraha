@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -22,7 +23,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $messages = DB::table('messages')
+        ->where('receiver', '=', Auth::user()->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+        return view('home', compact('messages'));
     }
 }

@@ -24,4 +24,5 @@ Route::get('/about', 'aboutController@about')->name('about');
 Route::get('/contact', 'aboutController@contact')->name('contact');
 Route::get('/{username}', 'messageController@index')->name('username');
 Route::post('/{user}/create', 'messageController@create');
+Route::get('/delete/{{id}}', 'messageController@delete');
 
