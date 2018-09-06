@@ -8,7 +8,9 @@ class mainController extends Controller
 {
     //
     public function index(Request $request, $username){
-        $user = DB::table('users')->where('username', $username)->first();
+        $user = DB::table('users')
+        ->where('username', $username)
+        ->first();
         return view('users.show', ['creds'=>$user]);
     }
 }

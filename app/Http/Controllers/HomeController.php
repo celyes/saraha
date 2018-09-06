@@ -27,7 +27,7 @@ class HomeController extends Controller
         $messages = DB::table('messages')
         ->where('receiver', '=', Auth::user()->id)
         ->orderBy('created_at', 'desc')
-        ->get();
+        ->paginate(5);  
         return view('home', compact('messages'));
     }
 }

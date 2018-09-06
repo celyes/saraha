@@ -6,7 +6,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if(session('sent'))
-                <p>{{ session('sent') }}</p>
+                <div class="alert alert-success">
+                    {{ session('sent') }}
+                </div>
             @endif
             <div class="card">  
                 <div class="card-header">Write a message to {{ $user->username }}</div>
@@ -21,21 +23,21 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-12 text-right">
+                            <div class="col-md-6">
+                               <p><small>write at least 15 characters and do not exceed 1500 characters</small> </p>
+                            </div>
+                            <div class="col-md-6 text-right">
                                 <button type="submit" class="btn btn-primary">
                                     Send
                                 </button>
                             </div>
                         </div>
-                        
-                        <div class="form-group row">
-                            <div class="col-md-12 text-right">
-                                <ul>  
-                                </ul>
-                            </div>
-                        </div>
                     </form>    
-                
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                        {{$errors->first()}}
+                        </div>
+                    @endif
                 </div>
             </div>
         <div>

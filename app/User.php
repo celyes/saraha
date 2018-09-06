@@ -26,6 +26,9 @@ class User extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function country(){
+        return $this->belongsTo('App\Country');
+    }
     public function messages(){
         return $this->hasMany('App\Message');
     }

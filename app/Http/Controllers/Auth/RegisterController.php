@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,7 +54,7 @@ class RegisterController extends Controller
             'username' =>'required|string|max:255|unique:users,username',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'country' => 'required|regex:/^[a-zA-Z]+$/u|max:40',
+            'country' => 'required',
             'gender' => 'required|max:6',
             'agree' => 'required'
         ]);

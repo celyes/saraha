@@ -73,12 +73,12 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
+                        
                         <div class="form-group row">
                             <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control" name="country" value="{{ old('country') }}" required>
+                                @include('layouts.countries')
                                 @if ($errors->has('country'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('country') }}</strong>
@@ -91,7 +91,7 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }} " required>
+                                @include('layouts.gender')
                                 @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('gender') }}</strong>

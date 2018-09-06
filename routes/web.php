@@ -20,9 +20,12 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'profileController@index')->name('profile');
+Route::put('/profile/update', 'profileController@update')->name('updateInfo');
 Route::get('/about', 'aboutController@about')->name('about');
 Route::get('/contact', 'aboutController@contact')->name('contact');
 Route::get('/{username}', 'messageController@index')->name('username');
 Route::post('/{user}/create', 'messageController@create');
-Route::get('/delete/{{id}}', 'messageController@delete');
+Route::delete('/home/delete/{id}', 'messageController@destroy');
+
 

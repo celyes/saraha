@@ -32,7 +32,7 @@ class messageController extends Controller
     public function create(Request $request, $user)
     { 
         $valid = $request->validate([
-            "body" => "required|min:15|max:500"
+            "body" => "required|min:15|max:1500"
         ]);
         DB::table('messages')->insert([
             'body'      => $request->body,
@@ -43,27 +43,7 @@ class messageController extends Controller
         ]);
         return redirect()->back()->with('sent', 'Your message has been submitted successfully !'); 
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Message $message)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -71,9 +51,11 @@ class messageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy(Message $message, $id)
     {
         //
-        
+        $message = Message::find($id);
+        $message->delete();
+        return back()->with('deleted', 'Message has been deleted successfully');
     }
 }

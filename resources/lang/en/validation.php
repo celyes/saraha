@@ -131,6 +131,12 @@ return [
         'agree' => [
             'required' => 'You need to agree on the Terms and conditions!',
         ],
+        'body'=>[
+            'required' => 'Please write a message!',
+            'max' => 'The message cannot exceed :max characters',
+            'min' => 'Write at least :min characters in your message'
+        ]
+        
 
     ],
 
