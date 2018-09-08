@@ -23,21 +23,19 @@ class profileController extends Controller
     }
 
     public function update(Request $request){
+                
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'username' =>'required|string|max:255|unique:users,username',
-            'email' => 'required|string|email|max:255',
-            'country' => 'required|regex:/^[a-zA-Z]+$/u|max:40',
-            'gender' => 'required|max:6'
+            'name' => 'required|string|max:255|unique:users',
+            'username' =>'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
         ]);
-        $update = User::where('id', '=', Auth::user()->id)
-        ->update([
-            'name'      => $request->name,
-            'username'  => $request->username,
-            'email'     => $request->email,
-            'country'   => $request->country,
-            'gender'    => $request->gender
-        ]);
+
+        $update = User::find(Auth::user()->id);
+        $update->name       = $request->name;
+        $update->username   = $request->username;
+        $update->email       = $request->email;
+        $update->save(); 
+        
         return redirect(route('profile'))->with('updated', 'Personal inforamtion updated successfully');
     }
 }

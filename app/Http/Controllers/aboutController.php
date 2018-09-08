@@ -12,6 +12,6 @@ class aboutController extends Controller
     }
 
     public function contact(){
-        return "Contact us";
+        return view('contact');
     }
 }

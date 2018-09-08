@@ -22,5 +22,13 @@
         </div>
     </div>
 </div>
-
+@endsection
+@section('footer')
+<footer class="page-footer">
+    <div class="footer-copyright text-center">
+        <small>
+            Sarahah &copy; {{Carbon\Carbon::now()->year}} <a href="#">Privacy</a> - <a href="#">Terms</a>
+        </small>
+    </div>
+</footer>
 @endsection
