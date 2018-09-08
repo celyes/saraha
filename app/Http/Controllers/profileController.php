@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use \App\User;
 use Auth;
 use DB;
@@ -36,6 +37,30 @@ class profileController extends Controller
         $update->email       = $request->email;
         $update->save(); 
         
+        return redirect(route('profile'))->with('updated', 'Basic inforamtion updated successfully');
+    }
+    public function updateAdditionals(Request $request){
+        $validate = $request->validate([
+            'country'   =>'required|string',
+            'gender'    =>'required|string|max:6'
+        ]);
+        $update = User::find(Auth::user()->id);
+        $update->country = $request->country;
+        $update->gender = $request->gender;
+        $update->save();        
         return redirect(route('profile'))->with('updated', 'Personal inforamtion updated successfully');
     }
+    public function updateSecurity(Request $request){
+        $validate = $request->validate([
+            'password'   =>'required|string|min:6|confirmed',
+        ]);
+        if(Hash::check($request->password, Auth::user()->password)){
+            return redirect(route('profile'))->with('failed', 'Please enter the correct password');
+        }
+        $update = User::find(Auth::user()->id);
+        $update->password = Hash::make($request->password);
+        $update->save();
+        return redirect(route('profile'))->with('updated', 'Password changed successfully');
+    }
+    
 }

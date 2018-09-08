@@ -14,6 +14,10 @@
                 <div class="alert alert-success">
                     {{session('updated')}}
                 </div>
+            @elseif(session('failed'))
+                <div class="alert alert-danger">
+                    {{session('failed')}}
+                </div>
             @endif
             <div class="card">  
                 <div class="card-header">
@@ -30,23 +34,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <a class="nav-link active" id="v-pills-required-tab" data-toggle="pill" href="#v-pills-required" role="tab" aria-controls="v-pills-required" aria-selected="true">Basic Information</a>
+                                    <a class="nav-link" id="v-pills-security-tab" data-toggle="pill" href="#v-pills-security" role="tab" aria-controls="v-pills-security" aria-selected="false">Security</a>
                                     <a class="nav-link" id="v-pills-option-tab" data-toggle="pill" href="#v-pills-option" role="tab" aria-controls="v-pills-option" aria-selected="false">Other</a>
                                 </div>
                             </div>
-                        <div class="col-9">
+                        <div class="col-md-9 col-sm-12">
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div class="tab-pane fade show active" id="v-pills-required" role="tabpanel" aria-labelledby="v-pills-required-tab">                               
                                     <form action="{{ route('updateInfo') }}" method="POST">
                                         {{ method_field('PUT') }}
                                         {{ csrf_field() }}
-                                        <div class="form-group row my-0"> 
-                                            <div class="col-md-8 offset-md-3">
-                                                <p class="text-primary">Basic information</p>
-                                            </div>
-                                        </div>
+                                       
                                         <div class="form-group row">                        
                                             <label for="name" class="col-md-3 col-form-label text-md-right">Name</label>
                                             <div class="col-md-9">
@@ -75,33 +76,61 @@
                                     </form>
                                 
                                 </div>
-                                <div class="tab-pane fade show" id="v-pills-option" role="tabpanel" aria-labelledby="v-pills-option-tab">
-                                    <div class="form-group row my-0"> 
-                                        <div class="col-md-9 offset-md-3">
-                                            <p class="text-primary mt-2">Other information</p>
+                                <div class="tab-pane fade show" id="v-pills-security" role="tabpanel" aria-labelledby="v-pills-security-tab">
+                                    <form action="{{ route('updateSecurity') }}" method="POST">
+                                        {{ method_field('PUT') }}
+                                        {{ csrf_field() }}
+                                        <div class="form-group row">                        
+                                            <label for="oldPass" class="col-md-3 col-form-label text-md-right">Old password</label>
+                                            <div class="col-md-9">
+                                                <input id="oldPass" type="password" class="form-control" name="oldPass" placeholder="Old password" required autofocus>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">                        
-                                        <label for="country" class="col-md-3 col-form-label text-md-right">Country</label>
-                                        <div class="col-md-9">
-                                            @include('layouts.countries')
-                                            <small>Current country : {{$country}}</small>
+                                        <div class="form-group row">                        
+                                            <label for="password" class="col-md-3 col-form-label text-md-right">New password</label>
+                                            <div class="col-md-9">
+                                                <input id="password" type="password" class="form-control" name="password" placeholder="New password" required autofocus>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">                        
-                                        <label for="gender" class="col-md-3 col-form-label text-md-right">Gender</label>
-                                        <div class="col-md-9">
-                                            @include('layouts.gender')
+                                        <div class="form-group row">                        
+                                            <label for="password-confirm" class="col-md-3 col-form-label text-md-right">Confirm password</label>
+                                            <div class="col-md-9">
+                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required>
+                                            </div>
+                                            <div class="col-md-3 offset-md-9 text-right">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Save
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-3 offset-md-9 text-right">
-                                            <button type="submit" class="btn btn-primary">
-                                                Update
-                                            </button>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
+                                <div class="tab-pane fade show" id="v-pills-option" role="tabpanel" aria-labelledby="v-pills-option-tab">
+                                    <form action="{{ route('updateAdditional') }}" method="POST">
+                                        {{ method_field('PUT') }}
+                                        {{ csrf_field() }}
+                                        <div class="form-group row">                        
+                                            <label for="country" class="col-md-3 col-form-label text-md-right">Country</label>
+                                            <div class="col-md-9">
+                                                @include('layouts.countries')
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">                        
+                                            <label for="gender" class="col-md-3 col-form-label text-md-right">Gender</label>
+                                            <div class="col-md-9">
+                                                @include('layouts.gender')
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-0">
+                                            <div class="col-md-3 offset-md-9 text-right">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

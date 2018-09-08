@@ -251,7 +251,7 @@ $countries = array(
 <select id="country" type="text" class="form-control" name="country" value="{{ old('country') }}" required>
     <option selected disabled>Select your country</option>                       
     @foreach($countries as $code=>$name)
-    <option value="{{$code}}">{{$name}}</option>
+    <option value="{{$code}}" @if(Auth::check()){{Auth::user()->country ==$code ? 'selected' : ''}}@endif>{{$name}}</option>
     @endforeach
     
 </select>

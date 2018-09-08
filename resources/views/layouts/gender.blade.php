@@ -8,7 +8,7 @@ $gender = array(
 
 <select id="gender" type="text" class="form-control" name="gender" required>
     @foreach($gender as $value)
-    <option value="{{$value}}">{{$value}}</option>
+    <option value="{{$value}}" @if(Auth::check()){{Auth::user()->gender ==$value ? 'selected' : ''}}@endif >{{$value}}</option>
     @endforeach
     
 </select>

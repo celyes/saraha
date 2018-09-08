@@ -22,6 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'profileController@index')->name('profile');
 Route::put('/profile/update', 'profileController@update')->name('updateInfo');
+Route::put('/profile/updateAdditionalInfo', 'profileController@updateAdditionals')->name('updateAdditional');
+Route::put('/profile/updateSecurity', 'profileController@updateSecurity')->name('updateSecurity');
 Route::get('/about', 'aboutController@about')->name('about');
 Route::get('/contact', 'aboutController@contact')->name('contact');
 Route::get('/{username}', 'messageController@index')->name('username');
