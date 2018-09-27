@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use \App\User;
+use App\Http\Requests\messageRequest; 
+use App\User;
 use Auth;
 use DB;
 class profileController extends Controller
@@ -23,7 +24,7 @@ class profileController extends Controller
         }
     }
 
-    public function update(Request $request){
+    public function update(messageRequest $request){
                 
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:users',
