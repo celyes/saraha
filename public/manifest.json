@@ -1,0 +1,21 @@
+{
+    "short_name": "Saraha",
+    "name": "Saraha website",
+    "icons": [
+      {
+        "src": "#",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "#",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#EDEDED",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#EDEDED"
+  }
