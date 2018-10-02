@@ -40,7 +40,7 @@
                     @else
                     <div class="col-md-11 mx-4 mb-1 mt-4 pb-4">
                         <h4>No messages </h4>
-                       <p>This is the link where people can send you messages : <a href="{{url('/')}}/{{Auth::user()->name}}">{{url('/')}}/{{Auth::user()->name}}</a></p>
+                       <p>This is the link where people can send you messages : <a href="{{url('/')}}/{{Auth::user()->name}}">{{url('/')}}/{{Auth::user()->username}}</a></p>
                     </div>
                     @endif
                     </div>
