@@ -11,6 +11,7 @@
 
     <!-- manifest file -->
     <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="theme-color" content="#EDEDED">
 
     <title>{{ config('app.name', 'Saraha') }}</title>
 

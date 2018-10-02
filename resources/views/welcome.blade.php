@@ -6,7 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Saraha redesigned using Laravel">
         <link rel="manifest" href="{{ asset('manifest.json') }}">
-
+        <meta name="theme-color" content="#EDEDED">
+            
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
         <title>Laravel</title>
 
         <!-- Fonts -->
